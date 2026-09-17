@@ -11,18 +11,18 @@
  * - Jangan upload file ini ke repo publik (GitHub dsb) karena berisi password DB.
  */
 
-$DB_HOST = 'sql208.infinityfree.com';
-$DB_PORT = 3306;
-$DB_NAME = 'if0_42738443_testosisdwisaka'; // database khusus OSIS — sudah tersedia di akunmu
-$DB_USER = 'if0_42738443';
-$DB_PASS = 'iBR6nm7mCY';
+$DB_HOST = ';
+$DB_PORT = ;
+$DB_NAME = ';
+$DB_USER = '';
+$DB_PASS = '';
 
 // Username & password login dashboard panitia (boleh diganti)
-define('ADMIN_USERNAME', 'panitiaosis');
-define('ADMIN_PASSWORD', 'osis2026new');
+define('ADMIN_USERNAME', '');
+define('ADMIN_PASSWORD', '');
 
 // Kode unik yang wajib dimasukkan peserta agar bisa mengikuti tes
-define('PARTICIPANT_CODE', 'OSIS2026-2027');
+define('PARTICIPANT_CODE', '');
 
 mysqli_report(MYSQLI_REPORT_OFF);
 $mysqli = @new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, $DB_PORT);
