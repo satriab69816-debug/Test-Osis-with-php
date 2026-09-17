@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tes Minat & Bakat OSIS — SMKN 2 Kuta Selatan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/logo.png" alt="Logo sekolah" onerror="this.style.display='none'">
+      <div><b>SMK NEGERI 2 KUTA SELATAN</b><span>Tes Minat & Bakat Calon Pengurus OSIS</span></div>
+    </div>
+    <button class="ghost" id="logoutBtn" hidden>Keluar</button>
+  </header>
+
+  <main class="container">
+    <section id="landing" class="screen active">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">TAHUN AJARAN 2026/2027</span>
+          <h1>Temukan bidang OSIS yang paling cocok dengan dirimu.</h1>
+          <p>Kerjakan soal pilihan ganda dengan jujur. Hasil tes akan membantu panitia melihat kecenderungan minat peserta.</p>
+          <div class="hero-actions">
+            <button class="primary" data-go="participantLogin">Login sebagai Peserta</button>
+            <button class="secondary" data-go="adminLogin">Login sebagai Panitia</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="stat"><strong>35</strong><span>Soal pilihan ganda</span></div>
+          <div class="stat"><strong>7</strong><span>Bidang Sekbid</span></div>
+          <div class="stat"><strong>100%</strong><span>Berbasis minat</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="participantLogin" class="screen">
+      <div class="auth-card">
+        <button class="back" data-go="landing">← Kembali</button>
+        <span class="eyebrow">AREA PESERTA</span>
+        <h2>Login Peserta</h2>
+        <p>Masukkan data peserta untuk memulai tes.</p>
+        <form id="participantForm">
+          <label>Nama lengkap<input id="pName" required placeholder="Contoh: Putu Bayu Satria"></label>
+          <div class="two">
+            <label>Kelas<input id="pClass" required placeholder="Contoh: XI PPLG 1"></label>
+            <label>No. Absen<input id="pAbsent" type="number" min="1" required placeholder="14"></label>
+          </div>
+          <label>Kode Peserta<input id="pCode" required placeholder="Contoh: OSIS2026-2027"></label>
+          <button class="primary full">Masuk & Mulai Tes</button>
+        </form>
+        <small>Masukkan kode unik peserta yang diberikan panitia untuk bisa memulai tes.</small>
+      </div>
+    </section>
+
+    <section id="adminLogin" class="screen">
+      <div class="auth-card">
+        <button class="back" data-go="landing">← Kembali</button>
+        <span class="eyebrow">AREA PANITIA</span>
+        <h2>Login Panitia</h2>
+        <p>Dashboard ini digunakan untuk memantau peserta dan hasil tes.</p>
+        <form id="adminForm">
+          <label>Username<input id="adminUser" required autocomplete="off"></label>
+          <label>Password<input id="adminPass" required type="password" autocomplete="off"></label>
+          <button class="primary full">Masuk Dashboard</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="quiz" class="screen">
+      <div class="quiz-top">
+        <div><span class="eyebrow">TES MINAT & BAKAT</span><h2 id="quizTitle">Pertanyaan</h2></div>
+        <span id="progressText">1 / 35</span>
+      </div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="question-card">
+        <span class="question-number" id="qNumber">SOAL 01</span>
+        <h3 id="questionText"></h3>
+        <div id="options"></div>
+      </div>
+      <div class="quiz-actions">
+        <button class="secondary" id="prevBtn">← Sebelumnya</button>
+        <button class="primary" id="nextBtn">Berikutnya →</button>
+      </div>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="result-card">
+        <span class="eyebrow">TES SELESAI</span>
+        <h2 id="resultTitle">Hasil Tes</h2>
+        <p id="resultSummary"></p>
+        <div id="resultGrid" class="result-grid"></div>
+        <div class="result-main" id="mainResult"></div>
+        <button class="primary full" id="finishBtn">Simpan & Kembali ke Beranda</button>
+      </div>
+    </section>
+
+    <section id="admin" class="screen">
+      <div class="admin-head">
+        <div><span class="eyebrow">DASHBOARD PANITIA</span><h2>Monitoring Peserta</h2><p>Kelola hasil tes yang tersimpan di browser ini.</p></div>
+        <div class="admin-actions"><button class="secondary" id="exportBtn">Export CSV</button><button class="danger" id="clearBtn">Hapus Semua Data</button></div>
+      </div>
+      <div class="dashboard-stats">
+        <div><b id="totalParticipants">0</b><span>Total Peserta</span></div>
+        <div><b id="todayParticipants">0</b><span>Hari Ini</span></div>
+        <div><b id="topSection">—</b><span>Sekbid Terbanyak</span></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Daftar Peserta</h3><input id="searchInput" placeholder="Cari nama / kelas / kode..."></div>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Peserta</th><th>Kelas</th><th>Kode</th><th>Hasil</th><th>Skor</th><th>Waktu</th></tr></thead><tbody id="participantTable"></tbody></table></div>
+        <div id="emptyAdmin" class="empty">Belum ada hasil tes.</div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="app.js?v=20260916c"></script>
+</body>
+</html>
